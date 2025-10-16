@@ -21,5 +21,17 @@ namespace Ecommerce.ViewComponents
             //abc
 
         }
+        //chay kpi thay thi xoa
+        public IViewComponentResult Invokes()
+        {
+            var data = db.Loais.Select(lo => new Ecommerce.ViewModels.MenuLoaiVM
+            {
+                MaLoai = lo.MaLoai,
+                TenLoai = lo.TenLoai,
+                SoLuong = lo.HangHoas.Count
+            }).OrderBy(p => p.TenLoai);
+            return View(data); //default.cshtml dsdasdasdasdasdsd
+            //abc
+        }
     }
 }
