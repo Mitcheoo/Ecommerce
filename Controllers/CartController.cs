@@ -8,7 +8,7 @@ namespace Ecommerce.Controllers
     public class CartController : Controller
     {
         private readonly DatabaseEcommerceContext db;
-        const string CART_KEY = "MYCART";
+        
 
         public CartController(DatabaseEcommerceContext context)
         {
@@ -19,7 +19,7 @@ namespace Ecommerce.Controllers
         {
             get
             {
-                return HttpContext.Session.Get<List<CartItemVM>>(CART_KEY) ?? new List<CartItemVM>();
+                return HttpContext.Session.Get<List<CartItemVM>>(MySetting.CART_KEY) ?? new List<CartItemVM>();
             }
         }
 
@@ -59,7 +59,7 @@ namespace Ecommerce.Controllers
                 item.SoLuong += quantity;
             }
 
-            HttpContext.Session.Set(CART_KEY, gioHang);
+            HttpContext.Session.Set(MySetting.CART_KEY, gioHang);
             return RedirectToAction("Index");
         }
         public IActionResult RemoveCart(int id)
@@ -69,7 +69,7 @@ namespace Ecommerce.Controllers
             if(item!=null)
             {
                 gioHang.Remove(item);
-                HttpContext.Session.Set(CART_KEY, gioHang); //cap nhat lai  gio hang
+                HttpContext.Session.Set(MySetting.CART_KEY, gioHang); //cap nhat lai  gio hang
             }
             return RedirectToAction("Index"); //toacction la hanh dong luon 
         }
