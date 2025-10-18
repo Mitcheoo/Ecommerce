@@ -206,6 +206,9 @@ public partial class DatabaseEcommerceContext : DbContext
             entity.Property(e => e.NgayGiao)
                 .HasDefaultValueSql("(((1)/(1))/(1900))")
                 .HasColumnType("datetime");
+            entity.Property(e => e.SoDienThoai)
+                .HasMaxLength(24)
+                .IsFixedLength();
 
             entity.HasOne(d => d.MaKhNavigation).WithMany(p => p.HoaDons)
                 .HasForeignKey(d => d.MaKh)

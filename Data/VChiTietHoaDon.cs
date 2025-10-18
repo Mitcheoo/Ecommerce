@@ -19,5 +19,3 @@ public partial class VChiTietHoaDon
 
     public string TenHh { get; set; } = null!;
 }
-
-

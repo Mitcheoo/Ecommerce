@@ -2,6 +2,7 @@
 using Ecommerce.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Ecommerce.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Ecommerce.Controllers
 {
@@ -73,5 +74,16 @@ namespace Ecommerce.Controllers
             }
             return RedirectToAction("Index"); //toacction la hanh dong luon 
         }
+        [Authorize]
+        public IActionResult Checkout()
+        {
+            var gioHang = Cart;
+            if(gioHang.Count == 0)
+            {
+                return Redirect("/404");
+            }
+            return View(Cart);
+        }
+
     }
 }
